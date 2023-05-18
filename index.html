@@ -21,7 +21,21 @@
     <button v-on:click="reduce(5)">Remove 5</button>
     <p v-once>Starting Counter: {{ counter }}</p>
     <p>Result: {{ counter }}</p>
-    <input type="text" v-on:input="setName($event, 'Wright')" v-on:keyup.enter="confirmInput">
+    <!-- Long way to get value user entered and set the value of the input so you can apply some logic to it (eg rest the input as in this scenario) using v-bind & v-on.
+    Done by listening to the input using v-on then sending a stored value back into the input using b-bind.
+    This is a very common pattern so there is a shorthand special Vue directive to achieve the same output - v-model.
+    -->
+
+    <!-- <input type="text" v-bind:value="name" v-on:input="setName($event, 'Wright')" v-on:keyup.enter="confirmInput"> -->
+
+    <!-- Short way using v-model directive which takes the data property you want it to manage for you. 
+    **** v-model is a shortcut for v-bind-value & v-on:input (see above) **** 
+    Concept called 2 way binding - listening to an event coming out of the input element and writing the value back to the input element throught its value attribute (communicating in both directions)
+    -->
+
+    <input type="text" v-model="name">
+
+    <button v-on:click="resetInput">Reset Input</button>
     <p>Your Name: {{ confirmedName }}</p>
     <form v-on:submit.prevent="submitForm">
       <input type="text">
