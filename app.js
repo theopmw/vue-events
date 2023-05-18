@@ -6,14 +6,26 @@ const app = Vue.createApp({
       confirmedName: '',
     };
   },
+  computed: {
+    fullname() {
+      console.log('Running...');
+      if (this.name === '') {
+        return '';
+      }
+      return this.name + ' ' + 'Wright';
+    },
+  },
   methods: {
+    outputFullName() {
+      return this.name + ' ' + 'Wright';
+    },
     confirmInput() {
       this.confirmedName = this.name;
     },
     submitForm() {
       alert('Submitted');
     },
-    setName(event, lastName) {
+    setName(event) {
       this.name = event.target.value;
     },
     add(num) {
